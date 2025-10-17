@@ -31,9 +31,81 @@
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="{{asset('admin_assets/css/style.css')}}">
-      @yield('csscodes')
-      @stack('styles')
+<style>
+/* Navbar search container */
+.navbar .navbar-nav .nav-search {
+  position: relative;
+  margin-left: 1rem;
+}
 
+/* Search input */
+.navbar .navbar-nav .nav-search .search-input {
+  border: 1px solid #a7e4ea;
+  border-radius: 25px;
+  padding: 0.5rem 1rem 0.5rem 2.6rem; /* leaves space for icon */
+  width: 240px;
+  background-color: #f1f9fa;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 6px rgba(0,188,212,0.25); /* aqua glow always visible */
+  font-size: 0.9rem;
+  color: #333;
+}
+
+/* Placeholder color for visibility */
+.navbar .navbar-nav .nav-search .search-input::placeholder {
+  color: #6c757d;
+  font-weight: 500;
+}
+
+/* On focus – stronger aqua glow */
+.navbar .navbar-nav .nav-search .search-input:focus {
+  border-color: #00bcd4;
+  box-shadow: 0 0 10px rgba(0,188,212,0.45);
+  background-color: #fff;
+  width: 280px;
+  outline: none;
+}
+
+/* Hover effect – slightly brighter aqua */
+.navbar .navbar-nav .nav-search .search-input:hover {
+  background-color: #eaf8f9;
+  border-color: #00acc1;
+  box-shadow: 0 0 8px rgba(0,188,212,0.35);
+}
+
+/* Search icon */
+.navbar .navbar-nav .nav-search .search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #00acc1; /* Aqua color for clarity */
+  z-index: 10;
+  pointer-events: none;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+/* Responsive view */
+@media (max-width: 991px) {
+  .navbar .navbar-nav .nav-search {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .navbar .navbar-nav .nav-search .search-input {
+    width: 100%;
+  }
+
+  .navbar .navbar-nav .nav-search .search-input:focus {
+    width: 100%;
+  }
+}
+
+</style>
+
+  @yield('csscodes')
+  @stack('styles')
   <!-- endinject -->
   {{-- <link rel="shortcut icon" href="http://www.urbanui.com/" /> --}}
 </head>
@@ -53,20 +125,24 @@
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
           <span class="fas fa-bars"></span>
         </button>
-        <ul class="navbar-nav">
-          <li class="nav-item nav-search d-none d-md-flex">
-            <div class="nav-link">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                    <i class="fas fa-search"></i>
-                  </span>
-                </div>
-                <input type="text" class="form-control" placeholder="Search" aria-label="Search">
-              </div>
+        {{-- <ul class="navbar-nav">
+          <li class="nav-item nav-search d-none d-md-flex align-items-center">
+            <div class="position-relative">
+              <i class="fas fa-search search-icon"></i>
+              <input type="text" class="form-control" placeholder="Search...">
             </div>
           </li>
-        </ul>
+        </ul> --}}
+        <ul class="navbar-nav">
+  <li class="nav-item nav-search d-none d-md-flex align-items-center">
+    <div class="position-relative">
+      {{-- <i class="fas fa-search search-icon"></i> --}}
+      <input type="text" class="form-control search-input" placeholder="Search...">
+    </div>
+  </li>
+</ul>
+
+
         <!-- Right side menu items -->
         <ul class="navbar-nav navbar-nav-right ml-auto">
 
@@ -216,12 +292,24 @@
                 <i class="fas fa-cog text-primary"></i>
                Site Settings
               </a>
-
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item">
-                <i class="fas fa-power-off text-primary"></i>
-                Logout
+ {{-- <a class="dropdown-item {{ request()->is('site-settings*') ? 'active' : '' }}" href="{{ route('site-settings.edit', 1) }}">
+                <i class="fas fa-cog text-primary"></i>
+                Site Settings
+              </a> --}}
+              <a class="dropdown-item {{ request()->is('admin/profile*') ? 'active' : '' }}" href="{{ route('admin_profile') }}">
+                <i class="fas fa-user text-primary"></i>
+                My Profile
               </a>
+              <div class="dropdown-divider"></div>
+             <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+    <i class="fas fa-power-off text-primary"></i>
+    Logout
+</a>
+
+<!-- This form is needed for the logout POST request -->
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+    @csrf
+</form>
             </div>
           </li>
 

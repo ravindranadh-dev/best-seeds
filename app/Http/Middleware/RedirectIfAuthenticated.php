@@ -24,7 +24,7 @@ class RedirectIfAuthenticated
                 }
 
                 // For authenticated users, let the IsAdmin middleware handle the admin routes
-                return redirect('/home');
+                return redirect('/admin');
             }
         }
 

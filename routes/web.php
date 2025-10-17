@@ -11,9 +11,11 @@ use App\Http\Controllers\Admin\HatcheryPostController;
 use App\Http\Controllers\Admin\HatcherySeedController;
 use App\Http\Controllers\Admin\BroadStockController;
 use App\Http\Controllers\Admin\BookingController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BannerController;
 // Redirect root URL to login
 Route::get('/', function () {
-    return redirect('/login');
+    return redirect('/admin');
 });
 
 Route::middleware(['guest'])->group(function () {
@@ -21,6 +23,10 @@ Route::middleware(['guest'])->group(function () {
         return view('welcome');
     })->name('login');
 });
+// Admin Profile Routes
+Route::get('admin/profile', [AdminController::class, 'profile'])->name('admin_profile');
+Route::put('admin/profile', [AdminController::class, 'updateAdminProfile'])->name('update_admin_profile');
+
 Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
     ->name('logout');
 Auth::routes();
@@ -46,6 +52,10 @@ Route::group(['middleware' => ['auth', \App\Http\Middleware\IsAdmin::class]], fu
     Route::resource('admin/hatchery-seeds', HatcherySeedController::class);
     Route::resource('admin/broad-stocks', BroadStockController::class);
     Route::resource('admin/bookings', BookingController::class);
+    Route::resource('admin/banners', BannerController::class);
+
+
+
 
 
 

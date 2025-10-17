@@ -145,8 +145,54 @@
     </div>
 </div>
 @endsection
-
 @push('styles')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<style>
+    /* Fixed height for multiple select */
+    .select2-container--default .select2-selection--multiple {
+        min-height: 45px;
+        max-height: 45px;       /* fix the height */
+        border-radius: 6px;
+        border: 1px solid #ced4da;
+        padding: 4px 8px;
+        overflow-x: auto;        /* allow horizontal scroll if many items */
+        overflow-y: hidden;      /* hide vertical overflow */
+        white-space: nowrap;     /* keep items in single line */
+    }
+
+    /* Selected tags styling */
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        margin: 2px 4px;
+        padding: 0 6px;
+        line-height: 36px;       /* vertically center inside the fixed height */
+    }
+
+    /* Placeholder styling */
+    .select2-container--default .select2-selection--multiple .select2-selection__placeholder {
+        color: #6c757d;
+        font-size: 0.95rem;
+        line-height: 36px;       /* vertically align with tags */
+    }
+</style>
+@endpush
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.select2').select2({
+            placeholder: function(){
+                return $(this).data('placeholder'); // corrected
+            },
+            width: '100%',
+            allowClear: true
+        });
+    });
+</script>
+@endpush
+
+
+{{-- @push('styles')
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <style>
     .select2-container .select2-selection--multiple {
@@ -169,4 +215,4 @@
         });
     });
 </script>
-@endpush
+@endpush --}}

@@ -16,8 +16,28 @@
               </div>
             </div>
           </li> --}}
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('admin')}}">
+          @php
+            $currentRoute = Route::currentRouteName();
+            $currentAction = request()->segment(2); // Get the action part of the URL
+            $isEditOrCreate = in_array($currentAction, ['create', 'edit']);
+
+            // Function to check if current route matches a pattern
+            function isActiveRoute($pattern, $currentRoute, $isEditOrCreate = false) {
+                // Check if the pattern exists in the current route
+                $isActive = str_contains($currentRoute, $pattern);
+
+                // If it's an edit or create action, check the base route
+                if ($isEditOrCreate) {
+                    $baseRoute = explode('.', $currentRoute)[0]; // Get the base route name
+                    return str_contains($baseRoute, $pattern);
+                }
+
+                return $isActive;
+            }
+          @endphp
+
+          <li class="nav-item {{ $currentRoute == 'admin' ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('admin') }}">
               <i class="fa fa-home menu-icon"></i>
               <span class="menu-title">Dashboard</span>
             </a>
@@ -32,14 +52,30 @@
             <div class="collapse" id="page-layouts">
               <ul class="nav flex-column sub-menu">
 
-                <li class="nav-item"> <a class="nav-link" href="{{route('vendors.index')}}">Vendors info</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{route('hatcheries.index')}}">Hatcheries</a></li>
-                <li class="nav-item "> <a class="nav-link" href="{{route('hatchery-categories.index')}}">Hatchery Categories</a></li>
-                <li class="nav-item "> <a class="nav-link" href="{{route('hatchery-locations.index')}}">Hatchery Locations</a></li>
-                <li class="nav-item "> <a class="nav-link" href="{{route('hatchery-updates.index')}}">Hatchery Updates</a></li>
-                <li class="nav-item "> <a class="nav-link" href="{{route('hatchery-seeds.index')}}">Hatchery Seeds</a></li>
-                <li class="nav-item "> <a class="nav-link" href="{{route('broad-stocks.index')}}">Broad Stock</a></li>
-                <li class="nav-item "> <a class="nav-link" href="{{route('bookings.index')}}">Bookings</a></li>
+                <li class="nav-item {{ isActiveRoute('vendors', $currentRoute, $isEditOrCreate) ? 'active' : '' }}">
+                  <a class="nav-link" href="{{ route('vendors.index') }}">Vendor Management</a>
+                </li>
+                <li class="nav-item {{ isActiveRoute('hatcheries', $currentRoute, $isEditOrCreate) && !str_contains($currentRoute, 'hatchery-') ? 'active' : '' }}">
+                  <a class="nav-link" href="{{ route('hatcheries.index') }}">Hatcheries</a>
+                </li>
+                <li class="nav-item {{ isActiveRoute('hatchery-categories', $currentRoute, $isEditOrCreate) ? 'active' : '' }}">
+                  <a class="nav-link" href="{{ route('hatchery-categories.index') }}">Hatchery Categories</a>
+                </li>
+                <li class="nav-item {{ isActiveRoute('hatchery-locations', $currentRoute, $isEditOrCreate) ? 'active' : '' }}">
+                  <a class="nav-link" href="{{ route('hatchery-locations.index') }}">Hatchery Locations</a>
+                </li>
+                <li class="nav-item {{ isActiveRoute('hatchery-updates', $currentRoute, $isEditOrCreate) ? 'active' : '' }}">
+                  <a class="nav-link" href="{{ route('hatchery-updates.index') }}">Hatchery Updates</a>
+                </li>
+                <li class="nav-item {{ isActiveRoute('hatchery-seeds', $currentRoute, $isEditOrCreate) ? 'active' : '' }}">
+                  <a class="nav-link" href="{{ route('hatchery-seeds.index') }}">Hatchery Seeds</a>
+                </li>
+                <li class="nav-item {{ isActiveRoute('broad-stocks', $currentRoute, $isEditOrCreate) ? 'active' : '' }}">
+                  <a class="nav-link" href="{{ route('broad-stocks.index') }}">Broad Stock</a>
+                </li>
+                <li class="nav-item {{ isActiveRoute('bookings', $currentRoute, $isEditOrCreate) ? 'active' : '' }}">
+                  <a class="nav-link" href="{{ route('bookings.index') }}">Bookings</a>
+                </li>
 
 
                 <li class="nav-item"> <a class="nav-link" href="pages/layout/rtl-layout.html">RTL</a></li>
@@ -47,6 +83,13 @@
               </ul>
             </div>
           </li>
+          <li class="nav-item">
+    <a class="nav-link" href="{{ route('banners.index') }}">
+        <i class="fas fa-image menu-icon"></i>
+        <span class="menu-title">Banners</span>
+    </a>
+</li>
+
            {{-- <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#banners" aria-expanded="false" aria-controls="banners">
               <i class="fas fa-image menu-icon"></i>
@@ -63,12 +106,12 @@
               </ul>
             </div>
           </li> --}}
-          <li class="nav-item">
-            <a class="nav-link" href="pages/widgets.html">
+          {{-- <li class="nav-item {{ str_contains($currentRoute, 'banners') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('banners.index') }}">
                 <i class="fas fa-image menu-icon"></i>
               <span class="menu-title">Banners</span>
             </a>
-          </li>
+          </li> --}}
           {{-- <li class="nav-item">
             <a class="nav-link" href="pages/widgets.html">
               <i class="fa fa-puzzle-piece menu-icon"></i>
@@ -165,7 +208,7 @@
               <i class="fas fa-pen-square menu-icon"></i>
               <span class="menu-title">Editors</span>
               <i class="menu-arrow"></i>
-            </a>
+            <y /a>
             <div class="collapse" id="editors">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"><a class="nav-link" href="pages/forms/text_editor.html">Text editors</a></li>

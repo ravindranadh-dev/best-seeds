@@ -75,22 +75,25 @@
       Latest Vendors ({{ $vendors->count() }})
     </h4>
     <div class="table-responsive">
-      <table class="table">
+      <table class="table table-hover" id="vendorsTable">
+        <thead>
+          <tr>
+            <th>Photo</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Contact</th>
+            <th>Email</th>
+            <th>Status</th>
+          </tr>
+        </thead>
         <tbody>
           @foreach($vendors as $vendor)
           <tr>
-            <td>
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="checkbox" class="form-check-input">
-                </label>
-              </div>
-            </td>
             <td class="py-1">
               @if($vendor->profile_image)
                 <img src="{{ asset('storage/' . $vendor->profile_image) }}" alt="profile" class="img-sm rounded-circle"/>
               @else
-                <div class="img-sm rounded-circle bg-info profile-image-text">
+                <div class="img-sm rounded-circle bg-info d-flex align-items-center justify-content-center text-white" style="width: 36px; height: 36px;">
                   {{ strtoupper(substr($vendor->name, 0, 1)) }}
                 </div>
               @endif
@@ -128,14 +131,42 @@
                 {{ $vendor->status == 1 ? 'Active' : 'Inactive' }}
               </label>
             </td>
-            <td>
-              <i class="fas fa-ellipsis-v"></i>
-            </td>
           </tr>
           @endforeach
         </tbody>
       </table>
     </div>
+
+    @push('scripts')
+    <script>
+      $(document).ready(function() {
+        $('#vendorsTable').DataTable({
+          "paging": true,
+          "lengthChange": true,
+          "searching": true,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false,
+          "responsive": true,
+          "language": {
+            "search": "_INPUT_",
+            "searchPlaceholder": "Search vendors...",
+            "lengthMenu": "Show _MENU_ entries",
+            "info": "Showing _START_ to _END_ of _TOTAL_ vendors",
+            "infoEmpty": "Showing 0 to 0 of 0 vendors",
+            "infoFiltered": "(filtered from _MAX_ total vendors)",
+            "paginate": {
+              "previous": "&laquo;",
+              "next": "&raquo;"
+            }
+          },
+          "dom": "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
+                 "<'row'<'col-sm-12'tr>>" +
+                 "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>"
+        });
+      });
+    </script>
+    @endpush
   </div>
 </div>
           </div>
