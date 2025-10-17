@@ -21,7 +21,8 @@ Route::middleware(['guest'])->group(function () {
         return view('welcome');
     })->name('login');
 });
-
+Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+    ->name('logout');
 Auth::routes();
 
 Route::group(['middleware' => ['auth', \App\Http\Middleware\IsAdmin::class]], function () {

@@ -219,13 +219,22 @@
 @endsection
 @push('scripts')
 <!-- Select2 CSS -->
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+
+
+<link href="{{ asset('admin_assets/ravindra/css/select2.min.css') }}" rel="stylesheet" />
+
+<script src="{{ asset('admin_assets/ravindra/js/jquery-3.6.0.min.js') }}"></script>
+
+<script src="{{ asset('admin_assets/ravindra/js/select2.min.js') }}"></script>
+
+{{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
 
 <!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
 
 <!-- Select2 JS -->
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+{{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
 
 <script>
 $(document).ready(function() {

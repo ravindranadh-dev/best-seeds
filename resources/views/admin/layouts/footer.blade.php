@@ -59,14 +59,31 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 </script> --}}
-<script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
-<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
-<script src="https://unpkg.com/filepond/dist/filepond.js"></script>
-<link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
-<link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/css/suneditor.min.css" rel="stylesheet">
+<script src="{{ asset('admin_assets/ravindra/js/filepond/filepond-plugin-file-validate-type.js') }}"></script>
+<script src="{{ asset('admin_assets/ravindra/js/filepond/filepond-plugin-image-preview.js') }}"></script>
+<script src="{{ asset('admin_assets/ravindra/js/filepond/filepond.js') }}"></script>
+
+{{-- suneditor --}}
+{{-- <link href="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/css/suneditor.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/suneditor@latest/dist/suneditor.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/suneditor@latest/src/lang/en.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/suneditor@latest/src/lang/en.js"></script> --}}
+
+
+<script src="{{ asset('admin_assets/ravindra/js/suneditor/suneditor.min.js') }}"></script>
+<script src="{{ asset('admin_assets/ravindra/js/suneditor/en.js') }}"></script>
+
+<link href="{{ asset('admin_assets/ravindra/css/filepond/filepond.css') }}" rel="stylesheet">
+<link href="{{ asset('admin_assets/ravindra/css/filepond/filepond-plugin-image-preview.css') }}" rel="stylesheet">
+<link href="{{ asset('admin_assets/ravindra/css/suneditor/suneditor.min.css') }}" rel="stylesheet">
+
+{{-- <script src="{{ asset('admin_assets/ravindra/css/filepond/filepond-plugin-image-preview.css') }}"></script>
+<script src="{{ asset('admin_assets/ravindra/css/suneditor/suneditor.min.css') }}"></script> --}}
+
+{{-- <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script> --}}
+{{-- <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script> --}}
+{{-- <script src="https://unpkg.com/filepond/dist/filepond.js"></script> --}}
+{{-- <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet"> --}}
+{{-- <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet"> --}}
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -76,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const existingImage = input.getAttribute('data-existing');
        FilePond.create(input, {
     acceptedFileTypes: ['image/png', 'image/jpeg'],
-    storeAsFile: true, 
+    storeAsFile: true,
     files: existingImage ? [{
         source: existingImage,
         options: {

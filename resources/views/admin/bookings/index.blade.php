@@ -88,9 +88,13 @@
 @endsection
 
 @push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
+<link rel="stylesheet" href="{{asset('admin_assets/ravindra/js/sweetalert.js')}}">
+<link rel="stylesheet" href="{{asset('admin_assets/ravindra/js/dataTables.min.js')}}">
+<link rel="stylesheet" href="{{asset('admin_assets/ravindra/js/bootstrap4.min.js')}}">
+
+{{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
+{{-- <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script> --}}
+{{-- <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script> --}}
 
 <script>
 $(document).ready(function() {
@@ -174,7 +178,7 @@ $(document).ready(function() {
 @endpush
 
 @push('styles')
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="{{asset('admin_assets/ravindra/js/bootstrap4.min.css')}}">
 <style>
     .dataTables_wrapper .dataTables_filter input {
         margin-left: 0.5em;

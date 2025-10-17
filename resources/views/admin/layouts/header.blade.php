@@ -15,9 +15,15 @@
   <link rel="stylesheet" href="{{asset('admin_assets/vendors/css/vendor.bundle.base.css')}}">
   <link rel="stylesheet" href="{{asset('admin_assets/vendors/css/vendor.bundle.addons.css')}}">
 
+
 <!-- FilePond CSS -->
-<link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
-<link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+
+
+<link href="{{ asset('admin_assets/ravindra/css/filepond/dist/filepond-plugin-image-preview.css') }}" rel="stylesheet">
+<link href="{{ asset('admin_assets/ravindra/css/filepond/dist/filepond.css') }}" rel="stylesheet">
+
+{{-- <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+<link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet"> --}}
 
 
   <!-- endinject -->
@@ -37,10 +43,10 @@
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row default-layout-navbar">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center" style="background-color: #e6f0fa; padding: 0 15px;">
         <a class="navbar-brand brand-logo" href="{{ route('admin') }}">
-            <span style="color: #0B94F7; font-weight: bold; font-size: 1.5rem;">{{ $site_settings->site_name ?? 'Best Seeds' }}</span>
+            <span style="color: #0B94F7; font-weight: bold; font-size: 1.2rem;">{{ $site_settings->site_name ?? 'Best Seeds' }}</span>
         </a>
         <a class="navbar-brand brand-logo-mini" href="{{ route('admin') }}">
-            <span style="color: #0B94F7; font-weight: bold;">{{ substr($site_settings->site_name ?? 'BS', 0, 2) }}</span>
+            <img src="{{ asset('uploads/logo_68e5f26e3952d.png') }}" alt="{{ $site_settings->site_name ?? 'Best Seeds' }}" style="height: 30px; width: auto;">
         </a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-stretch">
@@ -61,7 +67,8 @@
             </div>
           </li>
         </ul>
-        <ul class="navbar-nav navbar-nav-right">
+        <!-- Right side menu items -->
+        <ul class="navbar-nav navbar-nav-right ml-auto">
 
           {{-- <li class="nav-item dropdown d-none d-lg-flex">
             <div class="nav-link">
@@ -202,7 +209,7 @@
           </li> --}}
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="{{asset('uploads/logo_68e5f26e3952d.png')}}" alt="profile"/>
+              <img src="{{asset('uploads/man.png')}}" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item {{ request()->is('site-settings*') ? 'active' : '' }}" href="{{ route('site-settings.edit', 1) }}">

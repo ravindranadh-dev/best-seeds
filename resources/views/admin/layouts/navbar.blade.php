@@ -32,20 +32,42 @@
             <div class="collapse" id="page-layouts">
               <ul class="nav flex-column sub-menu">
 
-                <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{route('vendors.index')}}">Vendors info</a></li>
-                <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{route('hatcheries.index')}}">Hatcheries</a></li>
-                <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{route('hatchery-categories.index')}}">Hatchery Categories</a></li>
-                <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{route('hatchery-locations.index')}}">Hatchery Locations</a></li>
-                <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{route('hatchery-updates.index')}}">Hatchery Updates</a></li>
-                <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{route('hatchery-seeds.index')}}">Hatchery Seeds</a></li>
-                <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{route('broad-stocks.index')}}">Broad Stock</a></li>
-                <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="{{route('bookings.index')}}">Bookings</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('vendors.index')}}">Vendors info</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('hatcheries.index')}}">Hatcheries</a></li>
+                <li class="nav-item "> <a class="nav-link" href="{{route('hatchery-categories.index')}}">Hatchery Categories</a></li>
+                <li class="nav-item "> <a class="nav-link" href="{{route('hatchery-locations.index')}}">Hatchery Locations</a></li>
+                <li class="nav-item "> <a class="nav-link" href="{{route('hatchery-updates.index')}}">Hatchery Updates</a></li>
+                <li class="nav-item "> <a class="nav-link" href="{{route('hatchery-seeds.index')}}">Hatchery Seeds</a></li>
+                <li class="nav-item "> <a class="nav-link" href="{{route('broad-stocks.index')}}">Broad Stock</a></li>
+                <li class="nav-item "> <a class="nav-link" href="{{route('bookings.index')}}">Bookings</a></li>
 
 
-                {{-- <li class="nav-item"> <a class="nav-link" href="pages/layout/rtl-layout.html">RTL</a></li>
-                <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="pages/layout/horizontal-menu.html">Horizontal Menu</a></li> --}}
+                <li class="nav-item"> <a class="nav-link" href="pages/layout/rtl-layout.html">RTL</a></li>
+                {{-- <li class="nav-item d-none d-lg-block"> <a class="nav-link" href="pages/layout/horizontal-menu.html">Horizontal Menu</a></li> --}}
               </ul>
             </div>
+          </li>
+           {{-- <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#banners" aria-expanded="false" aria-controls="banners">
+              <i class="fas fa-image menu-icon"></i>
+
+
+              <span class="menu-title">Banners</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="banners">
+              <ul class="nav flex-column sub-menu">
+
+                <li class="nav-item"> <a class="nav-link" href="">Vendors info</a></li>
+
+              </ul>
+            </div>
+          </li> --}}
+          <li class="nav-item">
+            <a class="nav-link" href="pages/widgets.html">
+                <i class="fas fa-image menu-icon"></i>
+              <span class="menu-title">Banners</span>
+            </a>
           </li>
           {{-- <li class="nav-item">
             <a class="nav-link" href="pages/widgets.html">

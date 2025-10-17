@@ -43,7 +43,7 @@
                         @foreach($broadStocks as $item)
                         <tr>
                             <td class="font-weight-bold text-primary">#{{ $item->id }}</td>
-                      
+
                             <td>{{ $item->hatchery->hatchery_name }}</td>
                             <td>{{ $item->category->category_name ?? 'N/A' }}</td>
                             <td>{{ $item->location->name ?? 'N/A' }}</td>
@@ -92,9 +92,13 @@
 @endsection
 
 @push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="{{asset('admin_assets/ravindra/js/sweetalert.js')}}">
+<link rel="stylesheet" href="{{asset('admin_assets/ravindra/js/dataTables.min.js')}}">
+<link rel="stylesheet" href="{{asset('admin_assets/ravindra/js/bootstrap4.min.js')}}">
+
+{{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap4.min.js"></script> --}}
 
 <script>
 $(document).ready(function() {

@@ -18,14 +18,19 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                // Check if the user is an admin
-                if (Auth::user()->role == 1 || Auth::user()->is_admin == 1) {
-                    return redirect()->route('admin');
+                // If this is an API request or an AJAX request, just continue
+                if ($request->expectsJson() || $request->ajax()) {
+                    return $next($request);
                 }
-                
-                // For non-admin users, redirect to home or another appropriate route
-                return redirect('/');
+
+                // For authenticated users, let the IsAdmin middleware handle the admin routes
+                return redirect('/home');
             }
+        }
+
+        // If we get here, the user is not authenticated
+        if ($request->expectsJson() || $request->ajax()) {
+            return response()->json(['error' => 'Unauthenticated.'], 401);
         }
 
         return $next($request);
