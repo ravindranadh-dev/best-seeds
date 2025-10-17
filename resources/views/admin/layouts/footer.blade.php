@@ -259,3 +259,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 </html> --}}
+@php
+echo "ravindra";
+@endphp
